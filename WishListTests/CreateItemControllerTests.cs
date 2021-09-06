@@ -140,7 +140,8 @@ namespace WishListTests
             {
                 file = streamReader.ReadToEnd();
             }
-            var pattern = @"[[]HttpPost[\]]\s*?public\s* IActionResult\s* Create\s*?[(]\s*?((Wishlist[.])?Models[.]?)?Item\s* item\s*?[)]\s*?{\s*?_context[.](Items[.])?Add[(]\s*?item\s*?[)];\s*?_context[.]SaveChanges[(]\s*?[)];\s*?return\s* RedirectToAction[(]\s*?""Index""\s*?(,""Item"")?[)];\s*?}";
+            var pattern = @"[[]HttpPost[\]]\s*?public\s* IActionResult\s* Create\s*?[(]\s*?((WishList[.])?Models[.]?)?Item\s* item\s*?[)]\s*?{\s*?_context[.](Items[.])?Add[(]\s*?item\s*?[)];\s*?_context[.]SaveChanges[(]\s*?[)];\s*?return\s*RedirectToAction[(]\s*?""Index""\s*?(,""Item"")?[)];\s*?}";
+            //var pattern = @"[[]HttpPost[\]]\s*?public\s* IActionResult\s* Create\s*?[(]\s*?((WishList[.])?Models[.]?)?Item\s* item\s*?[)]\s*?{\s*?_context[.](Items[.])?Add[(]\s*?item\s*?[)];\s*?_context[.]SaveChanges[(]\s*?[)];";
             var rgx = new Regex(pattern);
             Assert.True(rgx.IsMatch(file), "`ItemController`'s `Create` (Post) action does not appear to be adding the provided `item` to `_context.Items`, `SaveChanges`, and then redirecting to the `Item`'s `Index` action.");
         }
